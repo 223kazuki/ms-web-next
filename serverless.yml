@@ -1,0 +1,2 @@
+msWebNextApplication:
+  component: "@sls-next/serverless-component@v1.18.0"
