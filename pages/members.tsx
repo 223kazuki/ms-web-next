@@ -1,7 +1,7 @@
 import { InferGetStaticPropsType } from "next";
 import "semantic-ui-css/semantic.min.css";
-import { Card, Icon, Container } from "semantic-ui-react";
-import Image from "next/image";
+import { Image, Card, Icon, Container } from "semantic-ui-react";
+// import Image from "next/image";
 
 type Member = {
   id: number;
@@ -21,11 +21,7 @@ export default function Members({
     <Container>
       {members.map((member) => (
         <Card>
-          <Image
-            src={"/images/member/" + member.image}
-            width={500}
-            height={400}
-          />
+          <Image src={"/images/member/" + member.image} />
           <Card.Content>
             <Card.Header>{member.name}</Card.Header>
             <Card.Meta>
