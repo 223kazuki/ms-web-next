@@ -1,7 +1,8 @@
 import { InferGetStaticPropsType } from "next";
 import "semantic-ui-css/semantic.min.css";
-import { Image, Card, Icon, Container } from "semantic-ui-react";
+import { Image, Card, Header, Container } from "semantic-ui-react";
 // import Image from "next/image";
+import Link from "next/link";
 
 type Member = {
   id: number;
@@ -18,7 +19,21 @@ export default function Members({
   members,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <Container>
+    <Container style={{ marginTop: "3em" }}>
+      <Header as="h1">Members</Header>
+      <ul>
+        <li>
+          <Link href="/">
+            <a>Home</a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/members">
+            <a>Members</a>
+          </Link>
+        </li>
+      </ul>
+
       {members.map((member) => (
         <Card>
           <Image src={"/images/member/" + member.image} />

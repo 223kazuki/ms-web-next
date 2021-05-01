@@ -10,11 +10,25 @@ import {
   Segment,
 } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
+import Link from "next/link";
 
 export default function Home() {
   return (
     <Container style={{ marginTop: "3em" }}>
       <Header as="h1">Theming Examples</Header>
+
+      <ul>
+        <li>
+          <Link href="/">
+            <a>Home</a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/members">
+            <a>Members</a>
+          </Link>
+        </li>
+      </ul>
 
       <Header as="h2" dividing>
         Site
