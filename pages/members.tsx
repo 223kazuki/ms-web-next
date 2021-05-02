@@ -3,6 +3,8 @@ import "semantic-ui-css/semantic.min.css";
 import { Image, Card, Header, Container } from "semantic-ui-react";
 // import Image from "next/image";
 import Link from "next/link";
+import React, { useState } from "react";
+import styled from "styled-components";
 
 type Member = {
   id: number;
@@ -15,12 +17,60 @@ type Member = {
   gradeId: string;
 };
 
+const Tab = styled.button`
+  padding: 10px 30px;
+  cursor: pointer;
+  opacity: 0.6;
+  background: white;
+  border: 0;
+  outline: 0;
+  border-bottom: 2px solid transparent;
+  transition: ease border-bottom 250ms;
+  ${({ active }) =>
+    active &&
+    `
+    border-bottom: 2px solid black;
+    opacity: 1;
+  `}
+`;
+
+const types = ["Cash", "Credit Card", "Bitcoin"];
+
+function TabGroup() {
+  const [active, setActive] = useState(types[0]);
+  return (
+    <>
+      <div>
+        {types.map((type) => (
+          <Tab
+            key={type}
+            active={active === type}
+            onClick={() => setActive(type)}
+          >
+            {type}
+          </Tab>
+        ))}
+      </div>
+      <p />
+      <p> Your payment selection: {active} </p>
+    </>
+  );
+}
+
 export default function Members({
   members,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  function handleClick(e) {
+    e.preventDefault();
+    console.log("The link was clicked.");
+  }
   return (
     <Container style={{ marginTop: "3em" }}>
       <Header as="h1">Members</Header>
+      <TabGroup />
+      <a href="#" onClick={handleClick}>
+        Click me
+      </a>
       <ul>
         <li>
           <Link href="/">
@@ -33,18 +83,21 @@ export default function Members({
           </Link>
         </li>
       </ul>
-
       {members.map((member) => (
-        <Card>
-          <Image src={"/images/member/" + member.image} />
+        <Card key={member.id}>
+          {member.image && <Image src={"/images/member/" + member.image} />}
           <Card.Content>
             <Card.Header>{member.name}</Card.Header>
             <Card.Meta>
               <span className="date">{member.grade}</span>
             </Card.Meta>
             <Card.Description>{member.introduction1}</Card.Description>
-            <Card.Description>{member.introduction2}</Card.Description>
-            <Card.Description>{member.introduction3}</Card.Description>
+            {member.introduction2 && (
+              <Card.Description>{member.introduction2}</Card.Description>
+            )}
+            {member.introduction3 && (
+              <Card.Description>{member.introduction3}</Card.Description>
+            )}
           </Card.Content>
         </Card>
       ))}
