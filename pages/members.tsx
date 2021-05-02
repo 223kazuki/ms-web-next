@@ -1,10 +1,10 @@
 import { InferGetStaticPropsType } from "next";
-import "semantic-ui-css/semantic.min.css";
 import { Image, Card, Header, Container } from "semantic-ui-react";
 // import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import styled from "styled-components";
+import Layout from "../components/layout";
 
 type Member = {
   id: number;
@@ -65,7 +65,7 @@ export default function Members({
     console.log("The link was clicked.");
   }
   return (
-    <Container style={{ marginTop: "3em" }}>
+    <Layout home={false}>
       <Header as="h1">Members</Header>
       <TabGroup />
       <a href="#" onClick={handleClick}>
@@ -101,7 +101,7 @@ export default function Members({
           </Card.Content>
         </Card>
       ))}
-    </Container>
+    </Layout>
   );
 }
 

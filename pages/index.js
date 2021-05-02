@@ -9,12 +9,12 @@ import {
   Menu,
   Segment,
 } from "semantic-ui-react";
-import "semantic-ui-css/semantic.min.css";
 import Link from "next/link";
+import Layout from "../components/layout";
 
 export default function Home() {
   return (
-    <Container style={{ marginTop: "3em" }}>
+    <Layout home={true}>
       <Header as="h1">Theming Examples</Header>
 
       <ul>
@@ -309,7 +309,7 @@ export default function Home() {
           </Segment>
         </Grid.Column>
       </Grid>
-    </Container>
+    </Layout>
 
     // <Container className="mainContainer">
     //   <Menu className="mainMenu" fixed="top" secondary size="large">
